@@ -1,0 +1,71 @@
+var document = require("document");
+var log = require("log"); log.setLevel("info");
+
+switch(request.method.toLocaleLowerCase()) {
+        
+    case "get": return resolveGet();
+    case "post": return create();
+    case "put": return update();
+    case "delete": return deleteItern();
+}
+
+function resolveGet(){
+    
+    var id = request.pathInfo;
+    log.info("id: " + id);
+    if (id){
+        return get(id);
+    }
+    
+    return list(request.parameters)
+}
+
+function get(id){
+    return document.get(id);
+}
+
+function list(params){
+    
+    var queryParams = {
+        query:'schema="intern"',  
+        fields: "name, msg, age"
+    };
+
+    return document.query(queryParams);
+}
+
+var name = null;
+var type = null;
+var age = null;
+
+if (request.headers["content-type"] == "application/json"){
+    name = request.body.name;
+    type = request.body.type;
+    age = request.body.age;
+}else {
+    name = request.parameters.name;
+    type = request.parameters.type;
+    age = request.parameters.age;
+}
+
+
+function complain(type) {
+    return {
+        "errorCode": "INVALID_PARAMETER",
+        "errorDetail": type + " is an unknown command type"
+    }
+}
+
+
+function write(name, age){
+
+    var obj = {
+        //"key": "inters_doc1",
+        "name": name,
+        "msg": "hello",
+        "age": age ? age : 0,
+        "meta.schema": "intern"
+    };
+
+    return document.create(obj);
+}
