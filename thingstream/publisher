@@ -11,56 +11,71 @@ function Publisher(client){
 }
 
 
-
+/**
+ * @function publishStringToTopic
+ * @param {object} parameters
+ * @return {Object} 
+ */
 Publisher.prototype.publishStringToTopic = function(params){
-    
+
     var url = PUBLISH_URL + "/topic/string";
-
     var instruction = {
+        
         "url":url,
         "method":"POST",
         "params":params
     };
-
     return this.client.callApi(instruction);
 }
 
+/**
+ * @function publishStringToDevice
+ * @param {object} parameters
+ * @return {Object} 
+ */
 Publisher.prototype.publishStringToDevice = function(params){
-    
+
     var url = PUBLISH_URL + "/device/string";
-
     var instruction = {
+        
         "url":url,
         "method":"POST",
         "params":params
     };
-
     return this.client.callApi(instruction);
 }
 
+/**
+ * @function publishBinaryToTopic
+ * @param {object} parameters
+ * @return {Object} 
+ */
 Publisher.prototype.publishBinaryToTopic = function(params){
-    
-    var url = PUBLISH_URL + "/topic/binary";
 
+    var url = PUBLISH_URL + "/topic/binary";
     var instruction = {
+        
         "url":url,
         "method":"POST",
         "params":params
     };
-
     return this.client.callApi(instruction);
 }
 
+/**
+ * @function publishBinaryToDevice
+ * @param {object} parameters
+ * @return {Object} 
+ */
 Publisher.prototype.publishBinaryToDevice = function(params){
-    
-    var url = PUBLISH_URL + "/device/binary";
 
+    var url = PUBLISH_URL + "/device/binary";
     var instruction = {
+        
         "url":url,
         "method":"POST",
         "params":params
     };
-
     return this.client.callApi(instruction);
 }
 

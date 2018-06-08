@@ -1,7 +1,6 @@
 var configScript = require("./config");
 var clientModule = require("./client");
 
-
 /**
  * Simple wrapper of the Thingstream server's API
  * @class ThingstreamServer
@@ -12,17 +11,12 @@ function Thingstream(config) {
 
     this.config = {};
     if (config) {
-
         this.config = config;
     } else {
-
         this.config = configScript;
     }
-
-
     this.client = new clientModule.Client({domainkey: this.config.domainkey, domainsecret: this.config.domainsecret});
 }
-
 
 /**
  * @function getPublisher
@@ -33,10 +27,8 @@ Thingstream.prototype.getPublisher = function(){
     if(!this.publisher) {
         this.publisher = new publisher.Publisher(this.client);
     }
-
     return this.publisher;
 }
-
 
 /**
  * @function getThing
@@ -47,7 +39,6 @@ Thingstream.prototype.getThing = function(){
     if(!this.thing){
         this.thing =  new thing.Thing(this.client); 
     }
-
     return this.thing;
 }
 

@@ -8,12 +8,8 @@ const THING_URL = "/things";
  * @param {Object} config: configuration client
  */
 function Thing(client) {
-
-this.client = client;
-    
+    this.client = client;
 }
-
-
 
 /**
  * @function registerUnmanagedSim
@@ -31,27 +27,22 @@ Thing.prototype.registerUnmanagedSim = function(params) {
             errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
         };
     }
-    
     if (!params.imsi){
 
         throw {
+
             errorCode: "MISSING_PARAMETER",
             errorDetail: "ThingStreamServer.listPayloads: IMSI cannot be null or empty"
         };
     }
-
     var instruction = {
 
         url: THING_URL + "/register/unmanaged-sim",
         method: "POST",
         params : params
     };
-
-
     return this.client.callApi(instruction);
 };
-
-
 
 /**
  * @function activate
@@ -64,23 +55,19 @@ Thing.prototype.activate = function(params) {
     if (!params) {
 
         throw {
+
             errorCode: "MISSING_PARAMETER",
             errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
         };
     }
- 
-
     var instruction = {
 
         url: THING_URL + "/activate",
         method: "POST",
         params : params
     };
-
-
     return this.client.callApi(instruction);
 };
-
 
 /**
  * @function deactivate
@@ -93,24 +80,19 @@ Thing.prototype.deactivate = function(params) {
     if (!params) {
 
         throw {
+
             errorCode: "MISSING_PARAMETER",
             errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
         };
     }
- 
-
     var instruction = {
 
         url: THING_URL + "/deactivate",
         method: "POST",
         params : params
     };
-
-
     return this.client.callApi(instruction);
 };
-
-
 
 /**
  * @function registerInternet
@@ -123,20 +105,17 @@ Thing.prototype.registerInternet = function(params) {
     if (!params) {
 
         throw {
+
             errorCode: "MISSING_PARAMETER",
             errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
         };
     }
- 
-
     var instruction = {
 
         url: THING_URL + "/register/internet",
         method: "POST",
         params : params
     };
-
-
     return this.client.callApi(instruction);
 };
 
@@ -151,20 +130,17 @@ Thing.prototype.update = function(params) {
     if (!params) {
 
         throw {
+
             errorCode: "MISSING_PARAMETER",
             errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
         };
     }
- 
-
     var instruction = {
 
         url: THING_URL + "/update",
         method: "POST",
         params : params
     };
-
-
     return this.client.callApi(instruction);
 };
 
@@ -179,19 +155,16 @@ Thing.prototype.search = function(params) {
     if (!params) {
 
         throw {
+
             errorCode: "MISSING_PARAMETER",
             errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
         };
     }
- 
-
     var instruction = {
 
         url: THING_URL + "/search",
         method: "POST",
         params : params
     };
-
-
     return this.client.callApi(instruction);
 };
