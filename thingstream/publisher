@@ -1,1 +1,68 @@
-return "pub";
+const PUBLISH_URL = "/publish";
+
+/**
+ * Simple wrapper of the thingStream server's API
+ * @class Publisher
+ * @constructor
+ * @param {Object} config: configuration object, optional, defaults to the config script
+ */
+function Publisher(client){  
+    this.client=client
+}
+
+
+
+Publisher.prototype.publishStringToTopic = function(params){
+    
+    var url = PUBLISH_URL + "/topic/string";
+
+    var instruction = {
+        "url":url,
+        "method":"POST",
+        "params":params
+    };
+
+    return this.client.callApi(instruction);
+}
+
+Publisher.prototype.publishStringToDevice = function(params){
+    
+    var url = PUBLISH_URL + "/device/string";
+
+    var instruction = {
+        "url":url,
+        "method":"POST",
+        "params":params
+    };
+
+    return this.client.callApi(instruction);
+}
+
+Publisher.prototype.publishBinaryToTopic = function(params){
+    
+    var url = PUBLISH_URL + "/topic/binary";
+
+    var instruction = {
+        "url":url,
+        "method":"POST",
+        "params":params
+    };
+
+    return this.client.callApi(instruction);
+}
+
+Publisher.prototype.publishBinaryToDevice = function(params){
+    
+    var url = PUBLISH_URL + "/device/binary";
+
+    var instruction = {
+        "url":url,
+        "method":"POST",
+        "params":params
+    };
+
+    return this.client.callApi(instruction);
+}
+
+
+
