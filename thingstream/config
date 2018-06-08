@@ -4,37 +4,12 @@
 var thingstreamUrl = "https://iotl-api.thingstream.io";
 
 /**
- * The username and password to use to authenticate to the thingstream server
+ * The domainkey and domainsecret to use to authenticate to the thingstream server
  */
 var domainkey = "UPCRS0GKIN97TCSXCPA1";
 var domainsecret = "OlCQf9Gr3kpYQpr7+O+gGTosJ5auGjsYnf6yGzwf";
 
 
 
-
-
-
-
-
-//EXTRA CALLBACK FROM ORBIWISE
-
-
-/**
- * The scriptr.io callback that can be provided to the DASS server in orer to send (uplink) device updates
- */
-//var callback = {
-  
- // host: "https://api.scriptrapps.io", 
-//  port: 443,
- // path_prefix: "/modules/orbiwise/webhook",
-  //auth_string: "Bearer A_SCRIPTR.IO_AUTH_TOKEN",
-  //retry_policy: 1
-//};
-
-/**
- * Set the below to true in order to return 203 response when in PUSH mode (Orbiwise sending data to scriptr.io) 
- * Returning 202 will prevent the obiwise server to through the data and will keep it for further reuse
- */
-//var return202OnCallback = true;
 
 

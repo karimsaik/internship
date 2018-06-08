@@ -1,1 +1,197 @@
-return "things";
+var configScript = require("./config");
+const THING_URL = "/things";
+
+/**
+ * Simple wrapper of the thingstream server's API
+ * @class things
+ * @constructor
+ * @param {Object} config: configuration client
+ */
+function Thing(client) {
+
+this.client = client;
+    
+}
+
+
+
+/**
+ * @function registerUnmanagedSim
+ * @param {object} parameters
+ * @return {Object} 
+ * @throw {Error}
+ */
+Thing.prototype.registerUnmanagedSim = function(params) {
+
+    if (!params) {
+
+        throw {
+
+            errorCode: "MISSING_PARAMETER",
+            errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
+        };
+    }
+    
+    if (!params.imsi){
+
+        throw {
+            errorCode: "MISSING_PARAMETER",
+            errorDetail: "ThingStreamServer.listPayloads: IMSI cannot be null or empty"
+        };
+    }
+
+    var instruction = {
+
+        url: THING_URL + "/register/unmanaged-sim",
+        method: "POST",
+        params : params
+    };
+
+
+    return this.client.callApi(instruction);
+};
+
+
+
+/**
+ * @function activate
+ * @param {object} parameters
+ * @return {Object} 
+ * @throw {Error}
+ */
+Thing.prototype.activate = function(params) {
+
+    if (!params) {
+
+        throw {
+            errorCode: "MISSING_PARAMETER",
+            errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
+        };
+    }
+ 
+
+    var instruction = {
+
+        url: THING_URL + "/activate",
+        method: "POST",
+        params : params
+    };
+
+
+    return this.client.callApi(instruction);
+};
+
+
+/**
+ * @function deactivate
+ * @param {object} parameters
+ * @return {Object} 
+ * @throw {Error}
+ */
+Thing.prototype.deactivate = function(params) {
+
+    if (!params) {
+
+        throw {
+            errorCode: "MISSING_PARAMETER",
+            errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
+        };
+    }
+ 
+
+    var instruction = {
+
+        url: THING_URL + "/deactivate",
+        method: "POST",
+        params : params
+    };
+
+
+    return this.client.callApi(instruction);
+};
+
+
+
+/**
+ * @function registerInternet
+ * @param {object} parameters
+ * @return {Object} 
+ * @throw {Error}
+ */
+Thing.prototype.registerInternet = function(params) {
+
+    if (!params) {
+
+        throw {
+            errorCode: "MISSING_PARAMETER",
+            errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
+        };
+    }
+ 
+
+    var instruction = {
+
+        url: THING_URL + "/register/internet",
+        method: "POST",
+        params : params
+    };
+
+
+    return this.client.callApi(instruction);
+};
+
+/**
+ * @function update
+ * @param {object} parameters
+ * @return {Object} 
+ * @throw {Error}
+ */
+Thing.prototype.update = function(params) {
+
+    if (!params) {
+
+        throw {
+            errorCode: "MISSING_PARAMETER",
+            errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
+        };
+    }
+ 
+
+    var instruction = {
+
+        url: THING_URL + "/update",
+        method: "POST",
+        params : params
+    };
+
+
+    return this.client.callApi(instruction);
+};
+
+/**
+ * @function search
+ * @param {object} parameters
+ * @return {Object} 
+ * @throw {Error}
+ */
+Thing.prototype.search = function(params) {
+
+    if (!params) {
+
+        throw {
+            errorCode: "MISSING_PARAMETER",
+            errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
+        };
+    }
+ 
+
+    var instruction = {
+
+        url: THING_URL + "/search",
+        method: "POST",
+        params : params
+    };
+
+
+    return this.client.callApi(instruction);
+};
