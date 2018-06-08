@@ -1,1 +1,47 @@
-return "blbl";
+var configScript = require("./config");
+var clientModule = require("./client");
+var publisher = require("./publisher");
+var thing = require("./thing");
+
+
+/**
+ * Simple wrapper of the Orbiwise server's API
+ * @class OrbiwiseServer
+ * @constructor
+ * @param {Object} config: configuration object, optional, defaults to the config script
+ */
+function Thingstream(config) {
+
+    this.config = {};
+    if (config) {
+
+        this.config = config;
+    } else {
+        this.config = configScript;
+    }
+
+    
+    this.client = new clientModule.Client({domainkey: this.config.domainkey, domainsecret: this.config.domainsecret});
+}
+
+
+
+Thingstream.prototype.getPublisher = function(){
+    
+    return new publisher.Publisher(this.config);
+    
+    
+}
+
+
+
+Thingstream.prototype.getthing = function(){
+    
+        return new thing.Thing(this.config);
+
+
+}
+
+
+
+

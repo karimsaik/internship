@@ -6,8 +6,8 @@ var thingstreamUrl = "https://iotl-api.thingstream.io";
 /**
  * The username and password to use to authenticate to the thingstream server
  */
-var domainkey = "YOUR_thingstream_USERNAME";
-var domainsecret = "YOUR_thingstream_PASSWORD";
+var domainkey = "UPCRS0GKIN97TCSXCPA1";
+var domainsecret = "OlCQf9Gr3kpYQpr7+O+gGTosJ5auGjsYnf6yGzwf";
 
 
 
