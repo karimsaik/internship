@@ -2,10 +2,10 @@ var configScript = require("./config");
 const THING_URL = "/thing";
 
 /**
- * Simple wrapper of the thingstream server's API
+ * Simple wrapper of the thingstream/thing server's API
  * @class things
  * @constructor
- * @param {Object} config: configuration client
+ * @param {Object} [client] config: configuration client
  */
 function Thing(client) {
     this.client = client;
@@ -13,9 +13,9 @@ function Thing(client) {
 
 /**
  * @function registerUnmanagedSim
- * @param {object} parameters
+ * @param {object} [parameters]
  * @return {Object} 
- * @throw {Error}
+ * @throw {Error} [MISSING_PARAMETER]
  */
 Thing.prototype.registerUnmanagedSim = function(params) {
 
@@ -46,9 +46,9 @@ Thing.prototype.registerUnmanagedSim = function(params) {
 
 /**
  * @function activate
- * @param {object} parameters
+* @param {object} [parameters]
  * @return {Object} 
- * @throw {Error}
+ * @throw {Error} [MISSING_PARAMETER]
  */
 Thing.prototype.activate = function(params) {
 
@@ -71,9 +71,9 @@ Thing.prototype.activate = function(params) {
 
 /**
  * @function deactivate
- * @param {object} parameters
+ * @param {object} [parameters]
  * @return {Object} 
- * @throw {Error}
+ * @throw {Error} [MISSING_PARAMETER]
  */
 Thing.prototype.deactivate = function(params) {
 
@@ -96,9 +96,9 @@ Thing.prototype.deactivate = function(params) {
 
 /**
  * @function registerInternet
- * @param {object} parameters
+* @param {object} [parameters]
  * @return {Object} 
- * @throw {Error}
+ * @throw {Error} [MISSING_PARAMETER]
  */
 Thing.prototype.registerInternet = function(params) {
 
@@ -121,9 +121,9 @@ Thing.prototype.registerInternet = function(params) {
 
 /**
  * @function update
- * @param {object} parameters
+ * @param {object} [parameters]
  * @return {Object} 
- * @throw {Error}
+ * @throw {Error} [MISSING_PARAMETER]
  */
 Thing.prototype.update = function(params) {
 
@@ -146,9 +146,9 @@ Thing.prototype.update = function(params) {
 
 /**
  * @function search
- * @param {object} parameters
+ * @param {object} [parameters]
  * @return {Object} 
- * @throw {Error}
+ * @throw {Error} [MISSING_PARAMETER]
  */
 Thing.prototype.search = function(params) {
 

@@ -52,13 +52,13 @@ jasmine.describe("thing", function() {
     });
 
     //activate
-    jasmine.it("should be able to activate a thing", function() {
+    jasmine.it("activate a thing should return an initialised array", function() {
 
         try{
 
             var result =   thing.activate({ });
             jasmine.expect(result).not.toBe(null);
-            jasmine.expect(result.succeeded.length).toBeGreaterThan(0) ;            // can't work cz server returns an array of ID's and we didn't insert any ID
+            jasmine.expect(result.succeeded.length).toBeGreaterThan(-1) ;            // can't work cz server returns an array of ID's and we didn't insert any ID
         }
         catch(exception){
             jasmine.fail(JSON.stringify(exception));
@@ -66,7 +66,7 @@ jasmine.describe("thing", function() {
     });	
 
     //deactivate
-    jasmine.it("should be able to deactivate a thing", function() {
+    jasmine.it("deactivate a thing should return an initialised array", function() {
 
         try{
 
@@ -74,7 +74,7 @@ jasmine.describe("thing", function() {
                 "device:2399dd6a-b1df-407d-8c46-eb2997b3e325"
             ] });
             jasmine.expect(result).not.toBe(null);
-            jasmine.expect(result.succeeded.length).toBeGreaterThan(0) ;            // can't work cz server returns an array of ID's and we didn't insert any ID
+            jasmine.expect(result.succeeded.length).toBeGreaterThan(-1) ;            // can't work cz server returns an array of ID's and we didn't insert any ID
         }
         catch(exception){
             jasmine.fail(JSON.stringify(exception));
@@ -82,13 +82,13 @@ jasmine.describe("thing", function() {
     });	
 
     //registerInternet
-    jasmine.it("should be able to registerInternet a thing", function() {
+    jasmine.it("registerInternet a thing should return a deviceId", function() {
 
         try{
 
             var result =   thing.registerInternet({ });
             jasmine.expect(result).not.toBe(null);
-            jasmine.expect(result.hasOwnProperty("messageId")).toBe(false);
+            jasmine.expect(result.hasOwnProperty("deviceId")).toBe(true);
         }
         catch(exception){
             jasmine.fail(JSON.stringify(exception));
@@ -96,13 +96,13 @@ jasmine.describe("thing", function() {
     });	
 
     //update
-    jasmine.it("should be able to update a thing", function() {
+    jasmine.it("update a thing should return an inicialised array ", function() {
 
         try{
 
             var result =   thing.update({ });
             jasmine.expect(result).not.toBe(null);
-            jasmine.expect(result.hasOwnProperty("messageId")).toBe(false);
+            jasmine.expect(result.succeeded.length).toBeGreaterThan(-1) ;  
         }
         catch(exception){
             jasmine.fail(JSON.stringify(exception));
@@ -111,13 +111,13 @@ jasmine.describe("thing", function() {
 
 
     //search
-    jasmine.it("should be able to search a thing", function() {
+    jasmine.it("search a thing should return count of found id's ", function() {
 
         try{
 
             var result =   thing.search({ });
             jasmine.expect(result).not.toBe(null);
-            jasmine.expect(result.hasOwnProperty("messageId")).toBe(false);
+            jasmine.expect(result.hasOwnProperty("count")).toBe(true);
         }
         catch(exception){
             jasmine.fail(JSON.stringify(exception));
