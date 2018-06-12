@@ -1,6 +1,9 @@
 var thingStreamMod= require("../thingstreamserver");
 var publisherMod= require("../publisher");
+
+//publisher manual test
 try{
+
     var thingStream = new thingStreamMod.Thingstream();
     var publisher = thingStream.getPublisher();
     var params={
@@ -10,7 +13,8 @@ try{
         "base64binary": "hello"
     };
     return publisher.publishBinaryToTopic(params);
-}catch(exception){
+}
+catch(exception){
     return exception;
 }
 

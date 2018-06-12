@@ -1,0 +1,130 @@
+var jasmine = require("../../modules/jasmine/boot");
+var thin = require("../thing");
+var cli = require ("../client");
+
+
+jasmine.describe("thing", function() {
+
+    var thing;
+    jasmine.beforeAll(function(){
+    }); 
+
+    jasmine.beforeEach(function() {
+
+        var Cl = new cli.Client({
+        });
+        thing = new thin.Thing(Cl);
+    });
+
+    //REGISTER TEST :
+    //happy scenario:
+    //unavailable beause of Thingstream imsi
+    // jasmine.it("should be able to register a thing", function() {
+    //      var result =  thing.registerUnmanagedSim({ imsi : "234507093194400"});
+    //     jasmine.expect(result).not.toBe(null);
+    //     jasmine.expect(result.hasOwnProperty("messageId")).toBe(true);
+    // });	
+
+    //missing params
+    jasmine.it("should send a missing parameter error", function() {
+
+        try{
+
+            var result = thing.registerUnmanagedSim();
+            jasmine.expect(true).toEqual(false);
+        }
+        catch(exception){
+            jasmine.expect(true).toBe(true);
+        }
+    });
+
+    //missing imsi
+    jasmine.it("should send a missing imsi parameter error", function() {
+
+        try{
+
+            var result =   thing.registerUnmanagedSim({});
+            jasmine.expect(true).toEqual(false);
+        }
+        catch(exception){
+            jasmine.expect(true).toEqual(true);
+        }
+    });
+
+    //activate
+    jasmine.it("should be able to activate a thing", function() {
+
+        try{
+
+            var result =   thing.activate({ });
+            jasmine.expect(result).not.toBe(null);
+            jasmine.expect(result.succeeded.length).toBeGreaterThan(0) ;            // can't work cz server returns an array of ID's and we didn't insert any ID
+        }
+        catch(exception){
+            jasmine.fail(JSON.stringify(exception));
+        }
+    });	
+
+    //deactivate
+    jasmine.it("should be able to deactivate a thing", function() {
+
+        try{
+
+            var result =   thing.deactivate({"deviceIds" : [
+                "device:2399dd6a-b1df-407d-8c46-eb2997b3e325"
+            ] });
+            jasmine.expect(result).not.toBe(null);
+            jasmine.expect(result.succeeded.length).toBeGreaterThan(0) ;            // can't work cz server returns an array of ID's and we didn't insert any ID
+        }
+        catch(exception){
+            jasmine.fail(JSON.stringify(exception));
+        }
+    });	
+
+    //registerInternet
+    jasmine.it("should be able to registerInternet a thing", function() {
+
+        try{
+
+            var result =   thing.registerInternet({ });
+            jasmine.expect(result).not.toBe(null);
+            jasmine.expect(result.hasOwnProperty("messageId")).toBe(false);
+        }
+        catch(exception){
+            jasmine.fail(JSON.stringify(exception));
+        }
+    });	
+
+    //update
+    jasmine.it("should be able to update a thing", function() {
+
+        try{
+
+            var result =   thing.update({ });
+            jasmine.expect(result).not.toBe(null);
+            jasmine.expect(result.hasOwnProperty("messageId")).toBe(false);
+        }
+        catch(exception){
+            jasmine.fail(JSON.stringify(exception));
+        }
+    });	
+
+
+    //search
+    jasmine.it("should be able to search a thing", function() {
+
+        try{
+
+            var result =   thing.search({ });
+            jasmine.expect(result).not.toBe(null);
+            jasmine.expect(result.hasOwnProperty("messageId")).toBe(false);
+        }
+        catch(exception){
+            jasmine.fail(JSON.stringify(exception));
+        }
+    });	
+});
+
+jasmine.execute();
+
+

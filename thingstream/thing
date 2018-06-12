@@ -1,5 +1,5 @@
 var configScript = require("./config");
-const THING_URL = "/things";
+const THING_URL = "/thing";
 
 /**
  * Simple wrapper of the thingstream server's API
@@ -168,3 +168,4 @@ Thing.prototype.search = function(params) {
     };
     return this.client.callApi(instruction);
 };
+
