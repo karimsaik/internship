@@ -4,7 +4,7 @@ const PUBLISH_URL = "/publish";
  * Simple wrapper of the thingStream server's API
  * @class Publisher
  * @constructor
- * @param {Object} config: configuration object, optional, defaults to the config script
+ * @param {Client}: instance of client created in ThingStream 
  */
 function Publisher(client){  
     this.client=client
@@ -13,8 +13,8 @@ function Publisher(client){
 
 /**
  * @function publishStringToTopic
- * @param {object} parameters
- * @return {Object} 
+ *@param(Object)[params]: deviceId, qos, topic, content
+ * @return {Object}[message id]
  */
 Publisher.prototype.publishStringToTopic = function(params){
 
@@ -30,8 +30,8 @@ Publisher.prototype.publishStringToTopic = function(params){
 
 /**
  * @function publishStringToDevice
- * @param {object} parameters
- * @return {Object} 
+ *@param(Object)[params]: deviceId, qos, toDeviceId, content
+ * @return {Object}[message id]
  */
 Publisher.prototype.publishStringToDevice = function(params){
 
@@ -47,8 +47,8 @@ Publisher.prototype.publishStringToDevice = function(params){
 
 /**
  * @function publishBinaryToTopic
- * @param {object} parameters
- * @return {Object} 
+ *@param(Object)[params]: deviceId, qos, topic, binary64content
+ * @return {Object}[message id]
  */
 Publisher.prototype.publishBinaryToTopic = function(params){
 
@@ -64,8 +64,8 @@ Publisher.prototype.publishBinaryToTopic = function(params){
 
 /**
  * @function publishBinaryToDevice
- * @param {object} parameters
- * @return {Object} 
+ *@param(Object)[params]: deviceId, qos, toDeviceId, binary64content
+ * @return {Object}[message id]
  */
 Publisher.prototype.publishBinaryToDevice = function(params){
 
@@ -78,6 +78,8 @@ Publisher.prototype.publishBinaryToDevice = function(params){
     };
     return this.client.callApi(instruction);
 }
+
+
 
 
 

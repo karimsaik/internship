@@ -7,6 +7,8 @@ var publisherMod = require("./publisher");
  * @class ThingstreamServer
  * @constructor
  * @param {Object} config: configuration object, optional, defaults to the config script
+ *@param{String}[config.domainKey]
+  *@param{String}[config.domainSecret]
  */
 function Thingstream(config) {
 
@@ -21,7 +23,7 @@ function Thingstream(config) {
 
 /**
  * @function getPublisher
- * @return {Object} 
+ * @return {Object}:instance of publisher/Publisher 
  */
 Thingstream.prototype.getPublisher = function(){
 
@@ -33,7 +35,7 @@ Thingstream.prototype.getPublisher = function(){
 
 /**
  * @function getThing
- * @return {Object} 
+ * @return {Object} :instance of thing/Thing
  */
 Thingstream.prototype.getThing = function(){
 
@@ -42,6 +44,8 @@ Thingstream.prototype.getThing = function(){
     }
     return this.thing;
 }
+
+
 
 
 
