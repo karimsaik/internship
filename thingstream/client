@@ -8,9 +8,8 @@ var log = require("log"); log.setLevel("info");
  * @constructor 
  */
 function Client(dto) {
-
-    this.domainkey = dto.domainkey ? dto.domainkey :  config.domainkey;
-    this.domainsecret = dto.domainsecret ? dto.domainsecret : config.domainsecret;
+    this.domainkey = (dto && dto.domainkey) ? dto.domainkey :  config.domainkey;
+    this.domainsecret = (dto && dto.domainsecret) ? dto.domainsecret : config.domainsecret;
 }
 
 
@@ -28,20 +27,20 @@ function Client(dto) {
 Client.prototype.callApi = function(params) {
 
     try {   
-        
+
         return this._callApi(params);
-    }catch(response) {
-        
+    }
+    catch(response) {
+
         this._handleError(response);
     }
 };
- 
+
 Client.prototype._callApi = function(params) {
 
-var x = JSON.parse(JSON.stringify(params)); 
+    var x = JSON.parse(JSON.stringify(params)); 
 
-    if (params.params && (params.method.toUpperCase == "POST" || params.method.toUpperCase == "PUT")) {
-
+    if (params.params && (params.method.toUpperCase() == "POST" || params.method.toUpperCase() == "PUT")) {
         params.bodyString = typeof(params.params) == "string" ? params.params : JSON.stringify(params.params);
         delete params.params;
     }
@@ -74,7 +73,7 @@ var x = JSON.parse(JSON.stringify(params));
         }else {
             return responseBody;
         }
-    }else {
+    } else {
         throw response;
     }
 };

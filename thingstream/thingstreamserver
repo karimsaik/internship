@@ -1,5 +1,6 @@
 var configScript = require("./config");
 var clientModule = require("./client");
+var publisherMod = require("./publisher");
 
 /**
  * Simple wrapper of the Thingstream server's API
@@ -25,7 +26,7 @@ function Thingstream(config) {
 Thingstream.prototype.getPublisher = function(){
 
     if(!this.publisher) {
-        this.publisher = new publisher.Publisher(this.client);
+        this.publisher = new publisherMod.Publisher(this.client);
     }
     return this.publisher;
 }

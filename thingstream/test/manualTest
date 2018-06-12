@@ -1,0 +1,16 @@
+var thingStreamMod= require("../thingstreamserver");
+var publisherMod= require("../publisher");
+try{
+    var thingStream = new thingStreamMod.Thingstream();
+    var publisher = thingStream.getPublisher();
+    var params={
+        "deviceId": "device:f412112e-d1c6-482a-938f-343330d34143",
+        "qos": 0,
+        "topic": "my-first-topic",
+        "base64binary": "hello"
+    };
+    return publisher.publishBinaryToTopic(params);
+}catch(exception){
+    return exception;
+}
+

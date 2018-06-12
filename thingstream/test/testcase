@@ -1,0 +1,93 @@
+var jasmine = require("../../modules/jasmine/boot");
+var publisher = require("../publisher");
+var client = require("../client");
+
+/**
+This script shows you how you can use jasmine within scriptr, all you have to do is require the jasmine boot and then you can call all the jasmine functions on the library's reference.
+
+**/
+
+jasmine.describe("Publisher", function() {
+    var cl;
+    var pub;
+    jasmine.beforeAll(function(){
+
+    }); 
+
+    jasmine.beforeEach(function() {
+        cl = new client.Client();
+        pub = new publisher.Publisher(cl);
+
+    });
+
+    jasmine.it("should return a msg id when publishStringToTopic", function() {
+        var params={ 
+            "deviceId": "device:f412112e-d1c6-482a-938f-343330d34143",
+            "qos": 0,
+            "topic": "my-first-topic",
+            "content": "hello from jasmine"
+        };
+        var result = pub.publishStringToTopic(params);
+        jasmine.expect(result).not.toBe(null);
+        jasmine.expect(result.hasOwnProperty("messageId")).toBe(true);
+    });
+
+    jasmine.it("should return a msg id when publishStringToDevice", function() {
+        try{
+            var params={
+                "deviceId": "device:f412112e-d1c6-482a-938f-343330d34143",
+                "qos": 0,
+                "toDeviceId": "device:f412112e-d1c6-482a-938f-343330d34143",
+                "content": "hi"
+            };
+            var result = pub.publishStringToDevice(params);
+            jasmine.expect(result).not.toBe(null);
+            jasmine.expect(result.hasOwnProperty("messageId")).toBe(true);
+        }catch(exception){
+            jasmine.fail(JSON.stringify(exception));
+        }
+
+    });
+
+
+    jasmine.it("should return a msg id when publishBinaryToTopic ", function() {
+
+        var params={"deviceId": "device:f412112e-d1c6-482a-938f-343330d34143",
+            "qos": 0,
+            "topic": "my-first-topic",
+            "base64binary": "aGVsbG8="
+        };
+        var result = pub.publishBinaryToTopic(params);
+        jasmine.expect(result).not.toBe(null);
+        jasmine.expect(result.hasOwnProperty("messageId")).toBe(true);
+    });
+
+    jasmine.it("should return a msg id when publishBinaryToDevice ", function() {
+
+        var params={
+            "deviceId": "device:f412112e-d1c6-482a-938f-343330d34143",
+            "qos": 0,
+            "toDeviceId": "device:f412112e-d1c6-482a-938f-343330d34143",
+            "base64binary": "aGVsbG8="
+        };
+        var result = pub.publishBinaryToDevice(params);
+        jasmine.expect(result).not.toBe(null);
+        jasmine.expect(result.hasOwnProperty("messageId")).toBe(true);
+    });
+
+
+
+
+
+});
+
+
+
+jasmine.execute();
+
+
+
+
+
+
+
