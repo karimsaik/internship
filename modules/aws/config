@@ -1,0 +1,18 @@
+/**
+ * The address of the your host aws server
+ */
+var host = ""; //please enter your host
+var region ="us-east-1";
+/**
+ * The domainkey and domainsecret to use to authenticate to the thingstream server
+ */
+var awsAccessKey = ""; //please enter your awsAccessKey
+var awsSecretKey = "";  //please enter your awsSecretKey
+
+/** 
+* the domain service
+*/
+var service = "es"; //es for elaricSearch
+
+
+

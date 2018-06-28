@@ -1,0 +1,131 @@
+var configScript = require("./config");
+
+
+/**
+ * @class rest
+ * @constructor
+ * @param {Object} [client] config: configuration client
+ */
+function RestServer(client) {
+    this.client = client;
+}
+
+
+
+/**
+ * @function GetObject
+ * @param {object} [parameters]
+ * @return {Object} 
+ * @throw {Error} [MISSING_PARAMETER]
+ */
+RestServer.prototype.search = function(params) {
+
+    if (!params) {
+
+        throw {
+
+            errorCode: "MISSING_PARAMETER",
+            errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
+        }; 
+    }
+    var instruction = {
+
+        url: params.url,
+        method: "GET",
+        //   params : params
+    }
+    return this.client.callApi(instruction);
+};
+
+
+
+
+/**
+ * @function DeleteObject
+ * @param {object} [parameters]
+ * @return {Object} 
+ * @throw {Error} [MISSING_PARAMETER]
+ */
+
+//all root is require  for deleting object!!!!!
+
+RestServer.prototype.DeleteObject = function(params) {
+
+    if (!params) {
+
+        throw {
+
+            errorCode: "MISSING_PARAMETER",
+            errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
+        };
+    }
+    var instruction = {
+
+        url: params.url,
+        method: "Delete",
+        //params : params      no need for param
+    };
+    return this.client.callApi(instruction);
+};
+
+
+
+
+/**
+ * @function PostObject
+ * @param {object} [parameters]
+ * @return {Object} 
+ * @throw {Error} [MISSING_PARAMETER]
+ */
+RestServer.prototype.postObject = function(params) {
+
+    if (!params || !params.content) {
+
+        throw {
+
+            errorCode: "MISSING_PARAMETER",
+            errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
+        };
+    }
+
+    var bodyParams = params.content;
+
+    var instruction = {
+
+        url: this.url,
+        method: "POST",
+        params : bodyParams
+    };
+    return this.client.callApi(instruction);
+};
+
+
+
+/**
+ * @function PutObject
+ * @param {object} [parameters]
+ * @return {Object} 
+ * @throw {Error} [MISSING_PARAMETER]
+ */
+RestServer.prototype.postObject = function(params) {
+
+    if (!params || !params.content) {
+
+        throw {
+
+            errorCode: "MISSING_PARAMETER",
+            errorDetail: "ThingStreamServer.listPayloads: params cannot be null or empty"
+        };
+    }
+
+    var bodyParams = params.content;
+
+    var instruction = {
+
+        url: params.url,
+        method: "POST",
+        params : bodyParams
+    };
+    return this.client.callApi(instruction);
+};
+
