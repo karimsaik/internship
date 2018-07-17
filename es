@@ -1,34 +1,25 @@
-var clientMod = require("./modules/aws/client");
-var restServerMod = require("./modules/aws/restServer");
+var http = require(http);
 
-
-var client = new clientMod.Client({});
-var esRest = new restServerMod.RestServer(client);
-
-
-
+/**
+ * Simple wrapper of the AWS/es server's API
+ * @class Sqs
+ * @constructor
+ * @param {Object}  config: configuration account
+ */
 function Es(dto){
 
     this.awsAccessKey = (dto && dto.awsAccessKey) ? dto.awsAccessKey :  "";
     this.awsSecretKey = (dto && dto.awsSecretKey) ? dto.awsSecretKey : "";
     this.region = (dto && dto.region) ? dto.region : "";
     this.endpoint = (dto && dto.endpoint) ? dto.endpoint : "";
+    this.service = "es";
+   }
 
-    var info = {
-        "awsAccessKey" : this.awsAccessKey,
-        "awsSecretKey" : this.awsSecretKey,
-        "region" : this.region,
-        "endpoint" : this.endpoint,
-        "service" : "es"
-    }
-
-    this.client = new clientMod.Client(info);
-    this.esRest = new restServerMod.RestServer(client);
-
-
-}
-
-
+/**
+ * @function count
+ * @param {object} [parameters]
+ * @return {Object} 
+ */
 //COUNT
 Es.prototype.count = function(params) {
 
@@ -52,14 +43,18 @@ Es.prototype.count = function(params) {
         this.url = this.url + "?q=" + query;
     }
 
-    var params = {
-        "url" : this.url
-    }
-
-    return esRest.Get(params);
+    //get the signature
+    var sign ;
+    
+   return http.request(sign);
+    
 }
 
-
+/**
+ * @function search
+ * @param {object} [parameters]
+ * @return {Object} 
+ */
 //Search
 Es.prototype.search = function(params) {
 
@@ -83,16 +78,20 @@ Es.prototype.search = function(params) {
         this.url = this.url + "?q=" + query;
     }
 
-    var params = {
-        "url" : this.url
-    }
-
-    esRest.Get(params);
+ //get the signature
+    var sign ;
+    
+   return http.request(sign);
+    
 }
 
 
 
-
+/**
+ * @function alias
+ * @param {object} [parameters]
+ * @return {Object} 
+ */
 //alias
 Es.prototype.alias = function(params) {
 
@@ -105,31 +104,35 @@ Es.prototype.alias = function(params) {
         this.url = this.endpoint +"/" + index + "/_alias";
     }
 
-    var params = {
-        "url" : this.url
-    }
-    esRest.Get(params);
+   //get the signature
+    var sign ;
+    
+   return http.request(sign);
+    
 }
 
-
-
-//Add aliases
-
-
-
+/**
+ * @function all
+ * @return {Object} 
+ */
 //all
 Es.prototype.all = function() {
 
     this.url = this.endpoint + "/_all";
 
-    var params = {
-        "url" : this.url
-    }
-    esRest.Get(params);
+     //get the signature
+    var sign ;
+    
+   return http.request(sign);
+    
 }
 
 
-
+/**
+ * @function search
+ * @param {object} [parameters]
+ * @return {Object} 
+ */
 //Flush
 Es.prototype.search = function(params) {
 
@@ -147,15 +150,19 @@ Es.prototype.search = function(params) {
             this.url = this.endpoint +"/"+index + "/" + type + "/_search";
         }
     }
-
-    var params = {
-        "url" : this.url
-    }
-
-    esRest.Get(params);
+    
+ //get the signature
+    var sign ;
+    
+   return http.request(sign);
+    
 }
 
-
+/**
+ * @function mapping
+ * @param {object} [parameters]
+ * @return {Object} 
+ */
 //mapping
 Es.prototype.mapping = function(params) {
 
@@ -168,44 +175,63 @@ Es.prototype.mapping = function(params) {
         this.url = this.endpoint +"/" + index + "/_mapping";
     }
 
-    var params = {
-        "url" : this.url
-    }
-    esRest.Get(params);
+ //get the signature
+    var sign ;
+    
+   return http.request(sign);
+    
 }
 
-
+/**
+ * @function nodes
+ * @return {Object} 
+ */
 //nodes
 Es.prototype.nodes = function() {
 
     this.url = this.endpoint+ "/_nodes";
-    var params = {
-        "url" : this.url
-    }
-    esRest.Get(params);
+    //get the signature
+    var sign ;
+    
+   return http.request(sign);
+    
 }
 
-
+/**
+ * @function snapshot
+ * @return {Object} 
+ */
 //snapshot
 Es.prototype.snapshot = function() {
 
     this.url = this.endpoint+ "/_snapshot";
-    var params = {
-        "url" : this.url
-    }
-    esRest.Get(params);
+   //get the signature
+    var sign ;
+    
+   return http.request(sign);
+    
 }
 
+/**
+ * @function clusterState
+ * @return {Object} 
+ */
 //cluster/state
 Es.prototype.clusterState = function() {
 
     this.url = this.endpoint+ "/_cluster/state";
-    var params = {
-        "url" : this.url
-    }
-    esRest.Get(params);
+ //get the signature
+    var sign ;
+    
+   return http.request(sign);
+    
 }
 
+/**
+ * @function stats
+ * @param {object} [parameters]
+ * @return {Object} 
+ */
 //stats
 Es.prototype.stats = function(params) {
 
@@ -218,24 +244,36 @@ Es.prototype.stats = function(params) {
         this.url = this.endpoint +"/" + index + "/_stats";
     }
 
-    var params = {
-        "url" : this.url
-    }
-    esRest.Get(params);
+     //get the signature
+    var sign ;
+    
+   return http.request(sign);
+    
 }
 
+/**
+ * @function clusterStats
+ * @return {Object} 
+ */
 //clusterStats
 Es.prototype.clusterStats = function() {
 
     this.url = this.endpoint+ "/_cluster/stats";
-    var params = {
-        "url" : this.url
-    }
-    esRest.Get(params);
+   //get the signature
+    var sign ;
+    
+   return http.request(sign);
+    
 }
 
 
-//Post     																	MA 3AM TOZBAT	
+/**
+ * @function post
+ * @param {object} [parameters]
+ * @return {Object} 
+ * @throw {Error} [MISSING_PARAMETER]
+ */
+//Post     																		
 Es.prototype.post = function(params) {
 
     var index = (params && params.index) ? params.index :  null;
@@ -272,16 +310,21 @@ Es.prototype.post = function(params) {
         this.url = this.url + "/" + id;
     }
 
-    var params = {
-        "url" : this.url,
-        "content" : obj
-    }
-
-    return esRest.post(params);
+    //get the signature
+    var sign ;
+    
+   return http.request(sign);
+    
 }
 
 
 
+/**
+ * @function count
+ * @param {object} [parameters]
+ * @return {Object} 
+ * @throw {Error} [MISSING_PARAMETER]
+ */
 //Delete
 Es.prototype.count = function(params) {
 
@@ -290,10 +333,10 @@ Es.prototype.count = function(params) {
     var id = (params && params.id) ? params.id :  null;
 
     if (index == null){
-       throw {
-                "errorCode": "Missing parameter",
-                "errorDetail": "index is required"
-            };  
+        throw {
+            "errorCode": "Missing parameter",
+            "errorDetail": "index is required"
+        };  
     }
     else{
         if (type == null){
@@ -304,15 +347,20 @@ Es.prototype.count = function(params) {
         }
     }
 
-   
 
-    var params = {
-        "url" : this.url
+
+   //get the signature
+    var sign ;
+    
+   return http.request(sign);
     }
 
-    return esRest.Get(params);
-}
 
+/**
+ * @function Get
+ * @param {object} [parameters]
+ * @return {Object} 
+ */
 //GET
 Es.prototype.Get = function(params) {
 
@@ -333,9 +381,22 @@ Es.prototype.Get = function(params) {
         }
     }
 
-    var params = {
-        "url" : this.url
-    }
-
-    esRest.Get(params);
+  //get the signature
+    var sign ;
+    
+   return http.request(sign);
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
